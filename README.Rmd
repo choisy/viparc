@@ -1,0 +1,34 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::knit_hooks$set(margin = function(before, options, envir) {
+  if (before) par(mgp = c(1.5, .5, 0), bty = "n", plt = c(.105, .97, .13, .97))
+  else NULL
+})
+
+knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
+                      collapse = TRUE, cache = FALSE, autodep = TRUE,
+                      dev.args = list(pointsize = 11), fig.height = 3.5,
+                      fig.width = 4.24725, fig.retina = 2,
+                      fig.align = "center", fig.path = "README-")
+```
+
+# viparc
+
+The goal of viparc is to ...
+
+## Example
+
+\code{pkgdown} is not currently available from CRAN, but you can install the
+development version from github with:
+
+```{r eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("choisy/viparc")
+```

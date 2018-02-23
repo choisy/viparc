@@ -1,0 +1,20 @@
+Package: viparc
+Type: Package
+Title: Utilitary functions for the ViParc project
+Version: 0.1.0
+Authors@R: person("Marc", "Choisy", 
+                  email = "marc.choisy@ird.fr", 
+                  role = c("aut", "cre", "cph"),
+                  comment = c(ORCID = "https://orcid.org/0000-0002-5187-6390"))
+Description: Utilitary functions for working on antimicrobial resistance
+    surveillance data as collected in the Vietnamese Platform for Antimicrobial
+    Reductions in Chicken (ViParc) production (http://viparc.org).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: TRUE
+URL: https://github.com/choisy/viparc
+BugReports: https://github.com/choisy/viparc/issues
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
