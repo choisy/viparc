@@ -1,10 +1,12 @@
 #' Tuned version of base::data.frame
+#' @noRd
 data.frame2 <- function(...) {
   data.frame(..., stringsAsFactors = FALSE)
 }
 
 
 #' Adds 2 matrices, taking dimensions names from the second one
+#' @noRd
 add_mat <- function(x, y) {
   out <- x + y
   rownames(out) <- rownames(y)
@@ -14,7 +16,7 @@ add_mat <- function(x, y) {
 
 
 #' Processes surveillance data according to one disease
-#'
+#' @noRd
 #' @importFrom magrittr %>% %$%
 #' @importFrom dplyr filter mutate right_join select mutate_all
 put_in_shape <- function(df) {
@@ -43,18 +45,21 @@ put_in_shape <- function(df) {
 
 
 #' order the rows of a matrix according to the column index of the last non null value.
+#' @noRd
 order_rows <- function(mat, dec) {
   mat[order(apply(mat, 1, function(x) last(which(x > 0))), decreasing = dec), ]
 }
 
 
 #' Tuned version of the graphics::image function
+#' @noRd
 image2 <- function(z, ...) {
   image(seq_len(ncol(z)), seq_len(nrow(z)), t(z), ...)
 }
 
 
 #' Transforms a vector into a hash table
+#' @noRd
 make_hash <- function(x) {
   setNames(seq_along(x), x)
 }
