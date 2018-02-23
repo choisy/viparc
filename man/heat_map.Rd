@@ -2,7 +2,7 @@
 % Please edit documentation in R/heat_map.R
 \name{heat_map}
 \alias{heat_map}
-\title{Heatmap of disease and antimicrobial usage of surveillance data}
+\title{Heatmap of disease and antimicrobial usage from surveillance data}
 \usage{
 heat_map(df, dec = FALSE, xlab = "time", ylab = "space",
   col_na = "lightgrey", col_surv_no_dis = "blue", col_surv_dis = "red",

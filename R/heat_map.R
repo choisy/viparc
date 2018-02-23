@@ -64,7 +64,7 @@ make_hash <- function(x) {
   setNames(seq_along(x), x)
 }
 
-#' Heatmap of disease and antimicrobial usage of surveillance data
+#' Heatmap of disease and antimicrobial usage from surveillance data
 #'
 #' blablabla
 #'

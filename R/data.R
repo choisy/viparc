@@ -1,4 +1,4 @@
-#' Surveillance of chicken farms
+#' Disease and antimicrobial surveillance in chicken farms
 #'
 #' Data collected in the ViParc project (http://viparc.org).
 #'

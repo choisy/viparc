@@ -3,7 +3,7 @@
 \docType{data}
 \name{chcknfarms}
 \alias{chcknfarms}
-\title{Surveillance of chicken farms}
+\title{Disease and antimicrobial surveillance in chicken farms}
 \format{A data frame with 2226 rows and 9 variables:
 \describe{
   \item{FARMCODE}{code of the farm, character.}
