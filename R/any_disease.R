@@ -23,5 +23,5 @@
 #'
 any_disease <- function(x, n = 1) {
   if (n < 1) stop("n should be higher than zero.")
-  rowSums(sapply(seq_len(n), function(y) c(rev(rev(x)[-seq_len(y)]), rep(NA, y))) > 0)
+  rowSums(sapply(seq_len(n), function(y) c(rev(rev(x)[-seq_len(y)]), rep(NA, y)))) > 0
 }
