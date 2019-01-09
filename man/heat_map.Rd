@@ -5,8 +5,8 @@
 \title{Heatmap of disease and antimicrobial usage from surveillance data}
 \usage{
 heat_map(df, dec = FALSE, xlab = "time", ylab = "space",
-  col_na = "lightgrey", col_surv_no_dis = "blue", col_surv_dis = "red",
-  ...)
+  col_na = "lightgrey", col_surv_no_dis = "blue",
+  col_surv_dis = "red", ...)
 }
 \arguments{
 \item{df}{data frame with 4 variable named "time", "space", "disease" and
