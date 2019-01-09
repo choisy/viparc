@@ -106,6 +106,12 @@ make_hash <- function(x) {
 heat_map <- function(df, dec = FALSE, xlab = "time", ylab = "space",
                      col_na = "lightgrey", col_surv_no_dis = "blue",
                      col_surv_dis = "red", ...) {
+  df$space <- as.character(df$space)
+  df$disease <- as.logical(df$disease)
+  df$drug <- as.logical(df$drug)
+  if (any(unique(with(a, table(space, time))) > 1))
+    stop("You should have no more than one observation (row) per space-time
+         combination.")
   disease_weeks <- put_in_shape(df)
   image2(order_rows(disease_weeks, dec), xlab = xlab, ylab = ylab, bty = "n",
          col = c(col_na, col_surv_no_dis, col_surv_dis))
