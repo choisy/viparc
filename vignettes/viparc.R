@@ -10,9 +10,11 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
                       fig.width = 4.24725, fig.retina = 2,
                       fig.align = "center", fig.path = "README-")
 
+## ----message = FALSE-----------------------------------------------------
+library(viparc)
+library(dplyr)
+
 ## ----message = FALSE, eval = FALSE---------------------------------------
-#  library(viparc)
-#  library(dplyr) # for %>%, filter and transmute
 #  data("chcknfarms")
 #  chcknfarms %>%
 #    filter(CYCLE == 1) %>%
@@ -21,4 +23,22 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
 #              disease = SRespiratory,
 #              drug    = AntibioticUse) %>%
 #    heat_map()
+
+## ------------------------------------------------------------------------
+amu <- rep(rep(c(TRUE, FALSE), 6), c(7, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 3))
+
+## ------------------------------------------------------------------------
+data.frame(amu) %>%
+  mutate(
+    with_amu = amu,
+    wout_amu = no_amu(amu, 1)) %>%
+  select(-amu)
+
+## ------------------------------------------------------------------------
+data.frame(amu) %>%
+  mutate(
+    with_amu = amu,
+    wout_amu = no_amu(amu, 1)) %>%
+  select(-amu) %>% 
+  filter(with_amu + wout_amu > 0)
 
