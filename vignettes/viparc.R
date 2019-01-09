@@ -40,5 +40,6 @@ data.frame(amu) %>%
     with_amu = amu,
     wout_amu = no_amu(amu, 1)) %>%
   select(-amu) %>% 
-  filter(with_amu + wout_amu > 0)
+  filter(with_amu + wout_amu > 0) %>% 
+  transmute(amu = with_amu)
 

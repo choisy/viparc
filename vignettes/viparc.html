@@ -364,26 +364,27 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb5-3" title="3"><span class="op">+</span><span class="st">     </span><span class="dt">with_amu =</span> amu,</a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="op">+</span><span class="st">     </span><span class="dt">wout_amu =</span> <span class="kw">no_amu</span>(amu, <span class="dv">1</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-5" title="5"><span class="op">+</span><span class="st">   </span><span class="kw">select</span>(<span class="op">-</span>amu) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(with_amu <span class="op">+</span><span class="st"> </span>wout_amu <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt;    with_amu wout_amu</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; 1      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; 2      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; 3      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; 4      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; 5      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; 6      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; 7     FALSE     TRUE</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 8      TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 9     FALSE     TRUE</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 10     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 11     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 12     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 13     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 14     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 15     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 16     TRUE    FALSE</span></a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt; 17    FALSE     TRUE</span></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 18    FALSE     TRUE</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-6" title="6"><span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(with_amu <span class="op">+</span><span class="st"> </span>wout_amu <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="op">+</span><span class="st">   </span><span class="kw">transmute</span>(<span class="dt">amu =</span> with_amu)</a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;      amu</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; 1   TRUE</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; 2   TRUE</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; 3   TRUE</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; 4   TRUE</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; 5   TRUE</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; 6   TRUE</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 7  FALSE</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 8   TRUE</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 9  FALSE</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 10  TRUE</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 11  TRUE</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 12  TRUE</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 13  TRUE</span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 14  TRUE</span></a>
+<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 15  TRUE</span></a>
+<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt; 16  TRUE</span></a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 17 FALSE</span></a>
+<a class="sourceLine" id="cb5-26" title="26"><span class="co">#&gt; 18 FALSE</span></a></code></pre></div>
 </div>
 
 

@@ -20,8 +20,9 @@
 #'
 #' @export
 #'
-no_amu <- function(x, n) {
+no_amu <- function(x, n = 0) {
   x <- ! x
+  if (n < 1) return(x)
   f <- function(y) {
     sel <- seq_len(y)
     c(rep(NA, y), rev(rev(x)[-sel]) & x[-sel])

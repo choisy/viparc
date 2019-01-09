@@ -4,7 +4,7 @@
 \alias{no_amu}
 \title{Define weeks with no AMU}
 \usage{
-no_amu(x, n)
+no_amu(x, n = 0)
 }
 \arguments{
 \item{x}{A boolean vector describing the presence / absence of AMU.}
