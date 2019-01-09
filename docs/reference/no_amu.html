@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Disease and antimicrobial surveillance in chicken farms — chcknfarms • viparc</title>
+<title>Define weeks with no AMU — no_amu • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Disease and antimicrobial surveillance in chicken farms — chcknfarms" />
+<meta property="og:title" content="Define weeks with no AMU — no_amu" />
 
-<meta property="og:description" content="Data collected in the ViParc project (http://viparc.org)." />
+<meta property="og:description" content="The definition of a week without antimicrobial use (AMU) is based not only on
+the status of AMU during that week, but also potentially on the AMU during
+the n weeks that preceed." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,47 +104,82 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Disease and antimicrobial surveillance in chicken farms</h1>
-    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>chcknfarms.Rd</code></div>
+    <h1>Define weeks with no AMU</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/no_amu.R'><code>R/no_amu.R</code></a></small>
+    <div class="hidden name"><code>no_amu.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Data collected in the ViParc project (http://viparc.org).</p>
+    <p>The definition of a week without antimicrobial use (AMU) is based not only on
+the status of AMU during that week, but also potentially on the AMU during
+the n weeks that preceed.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>chcknfarms</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 2226 rows and 9 variables:</p><dl class='dl-horizontal'>
-  <dt>FARMCODE</dt><dd><p>code of the farm, character.</p></dd>
-  <dt>CYCLE</dt><dd><p>number of the cycle, integer.</p></dd>
-  <dt>WEEK</dt><dd><p>number of the week, integer</p></dd>
-  <dt>SRepiratory</dt><dd><p>presence of respiratory infection, logical.</p></dd>
-  <dt>SDiarrhoea</dt><dd><p>presence of diarrhoea, logical.</p></dd>
-  <dt>SCNS</dt><dd><p>presence of central nervous system infection, logical.</p></dd>
-  <dt>SMalaise</dt><dd><p>presence of malaise, logical.</p></dd>
-  <dt>Week_Mt</dt><dd><p>weekly mortality, numeric.</p></dd>
-  <dt>AntibioticUse</dt><dd><p>use of antibiotic, logical.</p></dd>
-</dl>
+    <pre class="usage"><span class='fu'>no_amu</span>(<span class='no'>x</span>, <span class='no'>n</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A boolean vector describing the presence / absence of AMU.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>An scalar integer specifying the number of weeks to consider before
+a focal week in order to define AMU.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='http://viparc.org'>http://viparc.org</a></p>
+    <p>A boolean vector of the same length as x, with the first n values
+        equal to NA.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>no_amu</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>3</span>)), <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1]    NA    NA FALSE  TRUE</div><div class='input'><span class='no'>amu</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>), <span class='fl'>6</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>7</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>amu</span>, <span class='fu'>no_amu</span>(<span class='no'>amu</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt;         amu      
+#&gt;  [1,]  TRUE    NA
+#&gt;  [2,]  TRUE FALSE
+#&gt;  [3,]  TRUE FALSE
+#&gt;  [4,]  TRUE FALSE
+#&gt;  [5,]  TRUE FALSE
+#&gt;  [6,]  TRUE FALSE
+#&gt;  [7,]  TRUE FALSE
+#&gt;  [8,] FALSE FALSE
+#&gt;  [9,] FALSE  TRUE
+#&gt; [10,]  TRUE FALSE
+#&gt; [11,] FALSE FALSE
+#&gt; [12,] FALSE  TRUE
+#&gt; [13,]  TRUE FALSE
+#&gt; [14,]  TRUE FALSE
+#&gt; [15,]  TRUE FALSE
+#&gt; [16,] FALSE FALSE
+#&gt; [17,]  TRUE FALSE
+#&gt; [18,]  TRUE FALSE
+#&gt; [19,] FALSE FALSE
+#&gt; [20,]  TRUE FALSE
+#&gt; [21,] FALSE FALSE
+#&gt; [22,]  TRUE FALSE
+#&gt; [23,] FALSE FALSE
+#&gt; [24,] FALSE  TRUE
+#&gt; [25,] FALSE  TRUE</div><div class='input'># Note that each line is either c(FALSE, FALSE), c(TRUE, FALSE) or
+# c(FALSE, TRUE), but there is no line that is c(TRUE, TRUE).
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -21,7 +21,8 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
 
 # viparc
 
-The goal of viparc is to ...
+The package `viparc` is a collection of functions used in the
+[ViParc](http://viparc.org) project.
 
 ## Installation
 
@@ -29,6 +30,6 @@ The goal of viparc is to ...
 development version from github with:
 
 ```{r eval = FALSE}
-# install.packages("devtools")
+if (!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
 devtools::install_github("choisy/viparc")
 ```
