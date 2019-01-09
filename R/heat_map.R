@@ -109,7 +109,7 @@ heat_map <- function(df, dec = FALSE, xlab = "time", ylab = "space",
   df$space <- as.character(df$space)
   df$disease <- as.logical(df$disease)
   df$drug <- as.logical(df$drug)
-  if (any(unique(with(a, table(space, time))) > 1))
+  if (any(unique(with(df, table(space, time))) > 1))
     stop("You should have no more than one observation (row) per space-time
          combination.")
   disease_weeks <- put_in_shape(df)
