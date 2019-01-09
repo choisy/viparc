@@ -24,12 +24,19 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
                       fig.align = "center", fig.path = "README-")
 ```
 
+## Packages
+
+```{r message = FALSE}
+library(viparc)
+library(dplyr)
+```
+
+## Heatmap figure
+
 Heatmap of the surveillance disease and drug usage in several farms for a 
 number of weeks:
 
 ```{r message = FALSE, eval = FALSE}
-library(viparc)
-library(dplyr) # for %>%, filter and transmute
 data("chcknfarms")
 chcknfarms %>%
   filter(CYCLE == 1) %>%
@@ -42,3 +49,36 @@ chcknfarms %>%
 
 Note that the input data frame to `heat_map` should have 4 variables named
 `space`, `time`, `disease` and `drug`.
+
+
+## Identifying weeks with no AMU
+
+Let's consider for example the following vector of AMU:
+
+```{r}
+amu <- rep(rep(c(TRUE, FALSE), 6), c(7, 2, 1, 2, 3, 1, 2, 1, 1, 1, 1, 3))
+```
+
+See this example:
+
+```{r}
+data.frame(amu) %>%
+  mutate(
+    with_amu = amu,
+    wout_amu = no_amu(amu, 1)) %>%
+  select(-amu)
+```
+
+Note that, as expected, the only combination that we cannot have on any row is
+`c(TRUE, TRUE)`. Then, if one wants to discriminate any week either into AMU or
+no-AMU, the code will have to be:
+
+```{r}
+data.frame(amu) %>%
+  mutate(
+    with_amu = amu,
+    wout_amu = no_amu(amu, 1)) %>%
+  select(-amu) %>% 
+  filter(with_amu + wout_amu > 0)
+```
+
