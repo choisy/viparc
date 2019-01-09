@@ -21,6 +21,9 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "#>",
 
 # `viparc` <img src="man/figures/logo.png" align="right" width=200/>
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/viparc)](https://cran.r-project.org/package=viparc)
+
 The package `viparc` is a collection of functions used in the
 [ViParc](http://viparc.org) project.
 
