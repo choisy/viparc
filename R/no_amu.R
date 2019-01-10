@@ -4,7 +4,9 @@
 #' the status of AMU during that week, but also potentially on the AMU during
 #' the n weeks that preceed.
 #'
-#' @param x A boolean vector describing the presence / absence of AMU.
+#' @param x A boolean vector describing the presence / absence of AMU. This
+#'          vector has to be ordered chronologically (oldest first) and has to
+#'          be with no gap.
 #' @param n An scalar integer specifying the number of weeks to consider before
 #'          a focal week in order to define AMU.
 #'
