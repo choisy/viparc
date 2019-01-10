@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Heatmap of disease and antimicrobial usage from surveillance data — heat_map • viparc</title>
+<title>Fill gaps — fill_gaps • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Heatmap of disease and antimicrobial usage from surveillance data — heat_map" />
+<meta property="og:title" content="Fill gaps — fill_gaps" />
 
-<meta property="og:description" content="blablabla" />
+<meta property="og:description" content="This function fills the gaps in a sequence of booleans." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,80 +104,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Heatmap of disease and antimicrobial usage from surveillance data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/heat_map.R'><code>R/heat_map.R</code></a></small>
-    <div class="hidden name"><code>heat_map.Rd</code></div>
+    <h1>Fill gaps</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/fill_gaps.R'><code>R/fill_gaps.R</code></a></small>
+    <div class="hidden name"><code>fill_gaps.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>blablabla</p>
+    <p>This function fills the gaps in a sequence of booleans.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>heat_map</span>(<span class='no'>df</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"time"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"space"</span>,
-  <span class='kw'>col_na</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>, <span class='kw'>col_surv_no_dis</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>col_surv_dis</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>fill_gaps</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>data frame with 4 variable named "time", "space", "disease" and
-"drug". "time" and "space" are considered as integer and character
-respectively and "disease" and "drug" are both considered as
-logical.</p></td>
+      <th>x</th>
+      <td><p>A vector of boolean.</p></td>
     </tr>
     <tr>
-      <th>xlab</th>
-      <td><p>label of the x axis. Default to "time".</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>label of the y axis. Default to "space".</p></td>
-    </tr>
-    <tr>
-      <th>col_na</th>
-      <td><p>color used for non surveyed time/space.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_no_dis</th>
-      <td><p>color used for surveyed time/space with no disease.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_dis</th>
-      <td><p>color used for surveyed time/space with disease</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional parameters passed to the "points" function that add
-the "drug" information.</p></td>
+      <th>n</th>
+      <td><p>A scalar integer specifying the length of gaps that we want to fill.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A vector of boolean of the same size as <code>x</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If <code>n = 1</code>, it will replace any <code>TRUE FALSE TRUE</code> sequence by
+<code>TRUE TRUE TRUE</code>. If <code>n = 1</code>, it will additionally replace any
+<code>TRUE FALSE FALSE TRUE</code> sequence by <code>TRUE TRUE TRUE TRUE</code> and so on.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>chcknfarms</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>CYCLE</span> <span class='kw'>==</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>transmute</a></span>(<span class='kw'>space</span>   <span class='kw'>=</span> <span class='no'>FARMCODE</span>,
-            <span class='kw'>time</span>    <span class='kw'>=</span> <span class='no'>WEEK</span>,
-            <span class='kw'>disease</span> <span class='kw'>=</span> <span class='no'>SRespiratory</span>,
-            <span class='kw'>drug</span>    <span class='kw'>=</span> <span class='no'>AntibioticUse</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>heat_map</span>(<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"week"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"farm"</span>)</div><div class='img'><img src='heat_map-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>), <span class='fl'>7</span>), <span class='fl'>FALSE</span>),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>1</span>))
+<span class='fu'>fill_gaps</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='message'>Le chargement a nécessité le package : magrittr</span></div><div class='output co'>#&gt; <span class='message'>Le chargement a nécessité le package : dplyr</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attachement du package : ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='output co'>#&gt;  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#&gt; [13] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+#&gt; [25]  TRUE  TRUE FALSE</div><div class='input'><span class='fu'>fill_gaps</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt;  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#&gt; [13] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+#&gt; [25]  TRUE  TRUE FALSE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Marc Choisy</p>
   </div>
 </div>
 
