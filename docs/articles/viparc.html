@@ -240,11 +240,11 @@
 <div id="indexing-the-week-in-a-sequence" class="section level2">
 <h2 class="hasAnchor">
 <a href="#indexing-the-week-in-a-sequence" class="anchor"></a>Indexing the week in a sequence</h2>
-<p>See how functions <code><a href="../reference/index.html">index()</a></code> and <code><a href="../reference/fill_gaps.html">fill_gaps()</a></code> can be used to do the job:</p>
+<p>See how functions <code><a href="../reference/time_index.html">time_index()</a></code> and <code><a href="../reference/fill_gaps.html">fill_gaps()</a></code> can be used to do the job:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="op">&gt;</span><span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(amu),</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/time_index.html">time_index</a></span>(amu),</a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="op">+</span><span class="st">          </span><span class="dt">disease2 =</span> <span class="kw"><a href="../reference/fill_gaps.html">fill_gaps</a></span>(disease),</a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease2_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(disease2)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease2_week =</span> <span class="kw"><a href="../reference/time_index.html">time_index</a></span>(disease2)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-5" title="5"><span class="op">+</span><span class="st">   </span><span class="kw">select</span>(amu, amu_week, disease, disease2, disease2_week)</a>
 <a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; Le chargement a nécessité le package : magrittr</span></a>
 <a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;      amu amu_week disease disease2 disease2_week</span></a>
@@ -275,9 +275,9 @@
 <a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt; 25 FALSE        1    TRUE     TRUE             3</span></a></code></pre></div>
 <p>Then, you can extend this in a longer pipeline:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="op">&gt;</span><span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(amu),</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/time_index.html">time_index</a></span>(amu),</a>
 <a class="sourceLine" id="cb9-3" title="3"><span class="op">+</span><span class="st">          </span><span class="dt">disease =</span> <span class="kw"><a href="../reference/fill_gaps.html">fill_gaps</a></span>(disease),</a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease_week =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(disease, <span class="kw"><a href="../reference/index.html">index</a></span>(disease), <span class="ot">NA</span>),</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease_week =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(disease, <span class="kw"><a href="../reference/time_index.html">time_index</a></span>(disease), <span class="ot">NA</span>),</a>
 <a class="sourceLine" id="cb9-5" title="5"><span class="op">+</span><span class="st">          </span><span class="dt">disease_start =</span> disease_week <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>,</a>
 <a class="sourceLine" id="cb9-6" title="6"><span class="op">+</span><span class="st">          </span><span class="dt">amu_event =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(amu,</a>
 <a class="sourceLine" id="cb9-7" title="7"><span class="op">+</span><span class="st">                             </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(amu_week <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="st">"D"</span>, <span class="st">"S"</span>),</a>

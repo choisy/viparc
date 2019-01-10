@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Heatmap of disease and antimicrobial usage from surveillance data — heat_map • viparc</title>
+<title>Give the index of a sequence — time_index • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Heatmap of disease and antimicrobial usage from surveillance data — heat_map" />
+<meta property="og:title" content="Give the index of a sequence — time_index" />
 
-<meta property="og:description" content="blablabla" />
+<meta property="og:description" content="From a sequence A A A B B C A A C C C it will returns 1 2 3 1 2
+1 1 2 1 2 3." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,80 +105,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Heatmap of disease and antimicrobial usage from surveillance data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/heat_map.R'><code>R/heat_map.R</code></a></small>
-    <div class="hidden name"><code>heat_map.Rd</code></div>
+    <h1>Give the index of a sequence</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/time_index.R'><code>R/time_index.R</code></a></small>
+    <div class="hidden name"><code>time_index.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>blablabla</p>
+    <p>From a sequence <code>A A A B B C A A C C C</code> it will returns <code>1 2 3 1 2
+1 1 2 1 2 3</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>heat_map</span>(<span class='no'>df</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"time"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"space"</span>,
-  <span class='kw'>col_na</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>, <span class='kw'>col_surv_no_dis</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>col_surv_dis</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>time_index</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>data frame with 4 variable named "time", "space", "disease" and
-"drug". "time" and "space" are considered as integer and character
-respectively and "disease" and "drug" are both considered as
-logical.</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>label of the x axis. Default to "time".</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>label of the y axis. Default to "space".</p></td>
-    </tr>
-    <tr>
-      <th>col_na</th>
-      <td><p>color used for non surveyed time/space.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_no_dis</th>
-      <td><p>color used for surveyed time/space with no disease.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_dis</th>
-      <td><p>color used for surveyed time/space with disease</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional parameters passed to the "points" function that add
-the "drug" information.</p></td>
+      <th>x</th>
+      <td><p>a vector.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A vector of integers of the same length as <code>x</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This is basically a wrapper around the <code><a href='https://www.rdocumentation.org/packages/base/topics/rle'>rle</a></code> function.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>chcknfarms</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>CYCLE</span> <span class='kw'>==</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/dplyr/topics/mutate'>transmute</a></span>(<span class='kw'>space</span>   <span class='kw'>=</span> <span class='no'>FARMCODE</span>,
-            <span class='kw'>time</span>    <span class='kw'>=</span> <span class='no'>WEEK</span>,
-            <span class='kw'>disease</span> <span class='kw'>=</span> <span class='no'>SRespiratory</span>,
-            <span class='kw'>drug</span>    <span class='kw'>=</span> <span class='no'>AntibioticUse</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>heat_map</span>(<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"week"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"farm"</span>)</div><div class='img'><img src='heat_map-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"C"</span>, <span class='st'>"C"</span>, <span class='st'>"C"</span>)
+<span class='fu'>time_index</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  [1] 1 2 3 1 2 1 1 2 1 2 3</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Marc Choisy</p>
   </div>
 </div>
 

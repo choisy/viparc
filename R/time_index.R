@@ -11,10 +11,10 @@
 #'
 #' @examples
 #' x <- c("A", "A", "A", "B", "B", "C", "A", "A", "C", "C", "C")
-#' index(x)
+#' time_index(x)
 #'
 #' @export
 #'
-index <- function(x) {
+time_index <- function(x) {
   unlist(sapply(rle(x)$lengths, seq_len))
 }

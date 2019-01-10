@@ -127,13 +127,13 @@ dataset %>%
 
 ## Indexing the week in a sequence
 
-See how functions `index()` and `fill_gaps()` can be used to do the job:
+See how functions `time_index()` and `fill_gaps()` can be used to do the job:
 
 ```{r}
 dataset %>%
-  mutate(amu_week = index(amu),
+  mutate(amu_week = time_index(amu),
          disease2 = fill_gaps(disease),
-         disease2_week = index(disease2)) %>% 
+         disease2_week = time_index(disease2)) %>% 
   select(amu, amu_week, disease, disease2, disease2_week)
 ```
 
@@ -141,9 +141,9 @@ Then, you can extend this in a longer pipeline:
 
 ```{r}
 dataset %>%
-  mutate(amu_week = index(amu),
+  mutate(amu_week = time_index(amu),
          disease = fill_gaps(disease),
-         disease_week = ifelse(disease, index(disease), NA),
+         disease_week = ifelse(disease, time_index(disease), NA),
          disease_start = disease_week < 2,
          amu_event = ifelse(amu,
                             ifelse(amu_week > 1, "D", "S"),
