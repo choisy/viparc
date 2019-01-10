@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • viparc</title>
+<title>Give the index of a sequence — index • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Give the index of a sequence — index" />
+
+<meta property="og:description" content="From a sequence A A A B B C A A C C C it will returns 1 2 3 1 2
+1 1 2 1 2 3." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -50,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,66 +103,57 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Give the index of a sequence</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/index.R'><code>R/index.R</code></a></small>
+    <div class="hidden name"><code>index.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>From a sequence <code>A A A B B C A A C C C</code> it will returns <code>1 2 3 1 2
+1 1 2 1 2 3</code>.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="any_disease.html">any_disease()</a></code> </p>
-        </td>
-        <td><p>Look for presence of disease</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="chcknfarms.html">chcknfarms</a></code> </p>
-        </td>
-        <td><p>Disease and antimicrobial surveillance in chicken farms</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fill_gaps.html">fill_gaps()</a></code> </p>
-        </td>
-        <td><p>Fill gaps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="heat_map.html">heat_map()</a></code> </p>
-        </td>
-        <td><p>Heatmap of disease and antimicrobial usage from surveillance data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="no_amu.html">no_amu()</a></code> </p>
-        </td>
-        <td><p>Define weeks with no AMU</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>index</span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a vector.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A vector of integers of the same length as <code>x</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This is basically a wrapper around the <code><a href='https://www.rdocumentation.org/packages/base/topics/rle'>rle</a></code> function.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"C"</span>, <span class='st'>"C"</span>, <span class='st'>"C"</span>)
+<span class='fu'>index</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  [1] 1 2 3 1 2 1 1 2 1 2 3</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

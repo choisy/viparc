@@ -237,6 +237,78 @@
 <a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt; odds ratio </span></a>
 <a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt;  0.3779644</span></a></code></pre></div>
 </div>
+<div id="indexing-the-week-in-a-sequence" class="section level2">
+<h2 class="hasAnchor">
+<a href="#indexing-the-week-in-a-sequence" class="anchor"></a>Indexing the week in a sequence</h2>
+<p>See how functions <code><a href="../reference/index.html">index()</a></code> and <code><a href="../reference/fill_gaps.html">fill_gaps()</a></code> can be used to do the job:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="op">&gt;</span><span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(amu),</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="op">+</span><span class="st">          </span><span class="dt">disease2 =</span> <span class="kw"><a href="../reference/fill_gaps.html">fill_gaps</a></span>(disease),</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease2_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(disease2)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="op">+</span><span class="st">   </span><span class="kw">select</span>(amu, amu_week, disease, disease2, disease2_week)</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt; Le chargement a nécessité le package : magrittr</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;      amu amu_week disease disease2 disease2_week</span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt; 1   TRUE        1    TRUE     TRUE             1</span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt; 2   TRUE        2    TRUE     TRUE             2</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt; 3   TRUE        3    TRUE     TRUE             3</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt; 4   TRUE        4   FALSE     TRUE             4</span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt; 5  FALSE        1    TRUE     TRUE             5</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt; 6  FALSE        2   FALSE     TRUE             6</span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt; 7  FALSE        3    TRUE     TRUE             7</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt; 8  FALSE        4    TRUE     TRUE             8</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 9  FALSE        5   FALSE     TRUE             9</span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; 10  TRUE        1    TRUE     TRUE            10</span></a>
+<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt; 11 FALSE        1    TRUE     TRUE            11</span></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt; 12 FALSE        2   FALSE    FALSE             1</span></a>
+<a class="sourceLine" id="cb8-20" title="20"><span class="co">#&gt; 13 FALSE        3   FALSE    FALSE             2</span></a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="co">#&gt; 14 FALSE        4   FALSE    FALSE             3</span></a>
+<a class="sourceLine" id="cb8-22" title="22"><span class="co">#&gt; 15 FALSE        5    TRUE     TRUE             1</span></a>
+<a class="sourceLine" id="cb8-23" title="23"><span class="co">#&gt; 16 FALSE        6    TRUE     TRUE             2</span></a>
+<a class="sourceLine" id="cb8-24" title="24"><span class="co">#&gt; 17  TRUE        1   FALSE    FALSE             1</span></a>
+<a class="sourceLine" id="cb8-25" title="25"><span class="co">#&gt; 18 FALSE        1   FALSE    FALSE             2</span></a>
+<a class="sourceLine" id="cb8-26" title="26"><span class="co">#&gt; 19  TRUE        1   FALSE    FALSE             3</span></a>
+<a class="sourceLine" id="cb8-27" title="27"><span class="co">#&gt; 20 FALSE        1    TRUE     TRUE             1</span></a>
+<a class="sourceLine" id="cb8-28" title="28"><span class="co">#&gt; 21 FALSE        2   FALSE    FALSE             1</span></a>
+<a class="sourceLine" id="cb8-29" title="29"><span class="co">#&gt; 22 FALSE        3   FALSE    FALSE             2</span></a>
+<a class="sourceLine" id="cb8-30" title="30"><span class="co">#&gt; 23 FALSE        4    TRUE     TRUE             1</span></a>
+<a class="sourceLine" id="cb8-31" title="31"><span class="co">#&gt; 24  TRUE        1    TRUE     TRUE             2</span></a>
+<a class="sourceLine" id="cb8-32" title="32"><span class="co">#&gt; 25 FALSE        1    TRUE     TRUE             3</span></a></code></pre></div>
+<p>Then, you can extend this in a longer pipeline:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="op">&gt;</span><span class="st"> </span>dataset <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu_week =</span> <span class="kw"><a href="../reference/index.html">index</a></span>(amu),</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="op">+</span><span class="st">          </span><span class="dt">disease =</span> <span class="kw"><a href="../reference/fill_gaps.html">fill_gaps</a></span>(disease),</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="op">+</span><span class="st">          </span><span class="dt">disease_week =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(disease, <span class="kw"><a href="../reference/index.html">index</a></span>(disease), <span class="ot">NA</span>),</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="op">+</span><span class="st">          </span><span class="dt">disease_start =</span> disease_week <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="op">+</span><span class="st">          </span><span class="dt">amu_event =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(amu,</a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="op">+</span><span class="st">                             </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(amu_week <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="st">"D"</span>, <span class="st">"S"</span>),</a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="op">+</span><span class="st">                             </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(amu_week <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="st">"N"</span>, <span class="st">"A"</span>)))</a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt;      amu disease amu_week disease_week disease_start amu_event</span></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt; 1   TRUE    TRUE        1            1          TRUE         S</span></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt; 2   TRUE    TRUE        2            2         FALSE         D</span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt; 3   TRUE    TRUE        3            3         FALSE         D</span></a>
+<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt; 4   TRUE    TRUE        4            4         FALSE         D</span></a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt; 5  FALSE    TRUE        1            5         FALSE         A</span></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt; 6  FALSE    TRUE        2            6         FALSE         N</span></a>
+<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt; 7  FALSE    TRUE        3            7         FALSE         N</span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt; 8  FALSE    TRUE        4            8         FALSE         N</span></a>
+<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt; 9  FALSE    TRUE        5            9         FALSE         N</span></a>
+<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt; 10  TRUE    TRUE        1           10         FALSE         S</span></a>
+<a class="sourceLine" id="cb9-20" title="20"><span class="co">#&gt; 11 FALSE    TRUE        1           11         FALSE         A</span></a>
+<a class="sourceLine" id="cb9-21" title="21"><span class="co">#&gt; 12 FALSE   FALSE        2           NA            NA         N</span></a>
+<a class="sourceLine" id="cb9-22" title="22"><span class="co">#&gt; 13 FALSE   FALSE        3           NA            NA         N</span></a>
+<a class="sourceLine" id="cb9-23" title="23"><span class="co">#&gt; 14 FALSE   FALSE        4           NA            NA         N</span></a>
+<a class="sourceLine" id="cb9-24" title="24"><span class="co">#&gt; 15 FALSE    TRUE        5            1          TRUE         N</span></a>
+<a class="sourceLine" id="cb9-25" title="25"><span class="co">#&gt; 16 FALSE    TRUE        6            2         FALSE         N</span></a>
+<a class="sourceLine" id="cb9-26" title="26"><span class="co">#&gt; 17  TRUE   FALSE        1           NA            NA         S</span></a>
+<a class="sourceLine" id="cb9-27" title="27"><span class="co">#&gt; 18 FALSE   FALSE        1           NA            NA         A</span></a>
+<a class="sourceLine" id="cb9-28" title="28"><span class="co">#&gt; 19  TRUE   FALSE        1           NA            NA         S</span></a>
+<a class="sourceLine" id="cb9-29" title="29"><span class="co">#&gt; 20 FALSE    TRUE        1            1          TRUE         A</span></a>
+<a class="sourceLine" id="cb9-30" title="30"><span class="co">#&gt; 21 FALSE   FALSE        2           NA            NA         N</span></a>
+<a class="sourceLine" id="cb9-31" title="31"><span class="co">#&gt; 22 FALSE   FALSE        3           NA            NA         N</span></a>
+<a class="sourceLine" id="cb9-32" title="32"><span class="co">#&gt; 23 FALSE    TRUE        4            1          TRUE         N</span></a>
+<a class="sourceLine" id="cb9-33" title="33"><span class="co">#&gt; 24  TRUE    TRUE        1            2         FALSE         S</span></a>
+<a class="sourceLine" id="cb9-34" title="34"><span class="co">#&gt; 25 FALSE    TRUE        1            3         FALSE         A</span></a></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -248,6 +320,7 @@
       <li><a href="#heatmap-figure">Heatmap figure</a></li>
       <li><a href="#identifying-weeks-with-no-amu">Identifying weeks with no AMU</a></li>
       <li><a href="#looking-for-the-effect-of-amu-on-disease">Looking for the effect of AMU on disease</a></li>
+      <li><a href="#indexing-the-week-in-a-sequence">Indexing the week in a sequence</a></li>
       </ul>
 </div>
       </div>
