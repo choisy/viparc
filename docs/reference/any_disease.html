@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • viparc</title>
+<title>Look for presence of disease — any_disease • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Look for presence of disease — any_disease" />
+
+<meta property="og:description" content="Look for the presence of disease over a period that follows a given time
+point." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -50,7 +53,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,60 +103,87 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Look for presence of disease</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/any_disease.R'><code>R/any_disease.R</code></a></small>
+    <div class="hidden name"><code>any_disease.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Look for the presence of disease over a period that follows a given time
+point.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="any_disease.html">any_disease()</a></code> </p>
-        </td>
-        <td><p>Look for presence of disease</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="chcknfarms.html">chcknfarms</a></code> </p>
-        </td>
-        <td><p>Disease and antimicrobial surveillance in chicken farms</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="heat_map.html">heat_map()</a></code> </p>
-        </td>
-        <td><p>Heatmap of disease and antimicrobial usage from surveillance data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="no_amu.html">no_amu()</a></code> </p>
-        </td>
-        <td><p>Define weeks with no AMU</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>any_disease</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>A boolean vector informing about the presence or absence of disease
+at a given point in time. This implies that this vector is
+considered to be chronologically ordered, the most recent
+observations being first.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>A integer scalar telling the number of time points after the current
+one to look for for defining the period of time over which we want
+to look for presence of disease.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A boolean of vector of the same length as x, the n final values of
+        which are NA.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>disease</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>), <span class='fl'>7</span>),
+               <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>4</span>), <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>3</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>disease</span>, <span class='fu'>any_disease</span>(<span class='no'>disease</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt;       disease      
+#&gt;  [1,]   FALSE  TRUE
+#&gt;  [2,]    TRUE  TRUE
+#&gt;  [3,]   FALSE  TRUE
+#&gt;  [4,]    TRUE  TRUE
+#&gt;  [5,]   FALSE  TRUE
+#&gt;  [6,]   FALSE  TRUE
+#&gt;  [7,]    TRUE  TRUE
+#&gt;  [8,]    TRUE  TRUE
+#&gt;  [9,]    TRUE  TRUE
+#&gt; [10,]   FALSE  TRUE
+#&gt; [11,]   FALSE  TRUE
+#&gt; [12,]    TRUE  TRUE
+#&gt; [13,]    TRUE  TRUE
+#&gt; [14,]   FALSE  TRUE
+#&gt; [15,]    TRUE FALSE
+#&gt; [16,]   FALSE  TRUE
+#&gt; [17,]   FALSE  TRUE
+#&gt; [18,]   FALSE  TRUE
+#&gt; [19,]    TRUE  TRUE
+#&gt; [20,]    TRUE  TRUE
+#&gt; [21,]   FALSE  TRUE
+#&gt; [22,]   FALSE  TRUE
+#&gt; [23,]    TRUE    NA
+#&gt; [24,]    TRUE    NA
+#&gt; [25,]    TRUE    NA</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

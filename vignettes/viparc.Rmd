@@ -83,3 +83,46 @@ data.frame(amu) %>%
   transmute(amu = with_amu)
 ```
 
+## Looking for the effect of AMU on disease
+
+Let's consider a data set that could look like this:
+
+```{r}
+(dataset <- data.frame(
+  amu = c(rep(TRUE, 4), rep(FALSE, 5), TRUE, rep(FALSE, 6), TRUE,
+          FALSE, TRUE, rep(FALSE, 4), TRUE, FALSE),
+  disease = c(rep(TRUE, 3), FALSE, TRUE, FALSE, rep(TRUE, 2), FALSE,
+              rep(TRUE, 2), rep(FALSE, 3), rep(TRUE, 2), rep(FALSE, 3),
+              TRUE, rep(FALSE, 2), rep(TRUE, 3))
+))
+```
+
+Among the weeks with no diseases, we want to compare 2 groups of weeks:
+
+* the weeks $i$ with no AMU as well as no AMU either on week $i - 1$;
+* the weeks with AMU
+
+and for each of these 2 groups we want to count the number of weeks $j$ for
+which a disease was observed at week $j + 1$ or $j + 2$.
+
+To make it clear, note that here we are thus eliminating from the analysis
+
+* all the weeks $k$ with no AMU but with AMU on week $k - 1$ and
+* all the weeks with disease.
+
+The R code for that would be:
+
+```{r}
+dataset %>% 
+  mutate(no_amu = no_amu(amu, 1),              # no AMU on weeks i-1 and i
+         diseas = any_disease(disease, 2)) %>% # disease on weeks i+1 or i+2
+  na.exclude() %>% 
+  filter(! disease,                            # removes weeks with disease
+         amu + no_amu ) %>%                    # removes weeks with no AMU but...
+  mutate(amu = ! no_amu) %>%                   # ... with AMU the week before.
+  select(-disease, -no_amu)  %>% 
+  table() %>% 
+  fisher.test()
+```
+
+

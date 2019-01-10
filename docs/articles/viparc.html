@@ -72,7 +72,7 @@
       <h1>Introduction to viparc</h1>
                         <h4 class="author">Marc Choisy</h4>
             
-            <h4 class="date">2019-01-09</h4>
+            <h4 class="date">2019-01-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/choisy/viparc/blob/master/vignettes/viparc.Rmd"><code>vignettes/viparc.Rmd</code></a></small>
       <div class="hidden name"><code>viparc.Rmd</code></div>
@@ -166,6 +166,77 @@
 <a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 17 FALSE</span></a>
 <a class="sourceLine" id="cb5-26" title="26"><span class="co">#&gt; 18 FALSE</span></a></code></pre></div>
 </div>
+<div id="looking-for-the-effect-of-amu-on-disease" class="section level2">
+<h2 class="hasAnchor">
+<a href="#looking-for-the-effect-of-amu-on-disease" class="anchor"></a>Looking for the effect of AMU on disease</h2>
+<p>Let’s consider a data set that could look like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="op">&gt;</span><span class="st"> </span>(dataset &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="op">+</span><span class="st">   </span><span class="dt">amu =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">4</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">5</span>), <span class="ot">TRUE</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">6</span>), <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="op">+</span><span class="st">           </span><span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">4</span>), <span class="ot">TRUE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="op">+</span><span class="st">   </span><span class="dt">disease =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">3</span>), <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">2</span>), <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="op">+</span><span class="st">               </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">2</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">3</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">2</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="op">+</span><span class="st">               </span><span class="ot">TRUE</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">FALSE</span>, <span class="dv">2</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="ot">TRUE</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="op">+</span><span class="st"> </span>))</a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;      amu disease</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 1   TRUE    TRUE</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; 2   TRUE    TRUE</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 3   TRUE    TRUE</span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; 4   TRUE   FALSE</span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; 5  FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt; 6  FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 7  FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; 8  FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; 9  FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-18" title="18"><span class="co">#&gt; 10  TRUE    TRUE</span></a>
+<a class="sourceLine" id="cb6-19" title="19"><span class="co">#&gt; 11 FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-20" title="20"><span class="co">#&gt; 12 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-21" title="21"><span class="co">#&gt; 13 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-22" title="22"><span class="co">#&gt; 14 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-23" title="23"><span class="co">#&gt; 15 FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-24" title="24"><span class="co">#&gt; 16 FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-25" title="25"><span class="co">#&gt; 17  TRUE   FALSE</span></a>
+<a class="sourceLine" id="cb6-26" title="26"><span class="co">#&gt; 18 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-27" title="27"><span class="co">#&gt; 19  TRUE   FALSE</span></a>
+<a class="sourceLine" id="cb6-28" title="28"><span class="co">#&gt; 20 FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-29" title="29"><span class="co">#&gt; 21 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-30" title="30"><span class="co">#&gt; 22 FALSE   FALSE</span></a>
+<a class="sourceLine" id="cb6-31" title="31"><span class="co">#&gt; 23 FALSE    TRUE</span></a>
+<a class="sourceLine" id="cb6-32" title="32"><span class="co">#&gt; 24  TRUE    TRUE</span></a>
+<a class="sourceLine" id="cb6-33" title="33"><span class="co">#&gt; 25 FALSE    TRUE</span></a></code></pre></div>
+<p>Among the weeks with no diseases, we want to compare 2 groups of weeks:</p>
+<ul>
+<li>the weeks <span class="math inline">\(i\)</span> with no AMU as well as no AMU either on week <span class="math inline">\(i - 1\)</span>;</li>
+<li>the weeks with AMU</li>
+</ul>
+<p>and for each of these 2 groups we want to count the number of weeks <span class="math inline">\(j\)</span> for which a disease was observed at week <span class="math inline">\(j + 1\)</span> or <span class="math inline">\(j + 2\)</span>.</p>
+<p>To make it clear, note that here we are thus eliminating from the analysis</p>
+<ul>
+<li>all the weeks <span class="math inline">\(k\)</span> with no AMU but with AMU on week <span class="math inline">\(k - 1\)</span> and</li>
+<li>all the weeks with disease.</li>
+</ul>
+<p>The R code for that would be:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="op">&gt;</span><span class="st"> </span>dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">no_amu =</span> <span class="kw"><a href="../reference/no_amu.html">no_amu</a></span>(amu, <span class="dv">1</span>),              <span class="co"># no AMU on weeks i-1 and i</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="op">+</span><span class="st">          </span><span class="dt">diseas =</span> <span class="kw"><a href="../reference/any_disease.html">any_disease</a></span>(disease, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># disease on weeks i+1 or i+2</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.exclude</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="st"> </span>disease,                            <span class="co"># removes weeks with disease</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="op">+</span><span class="st">          </span>amu <span class="op">+</span><span class="st"> </span>no_amu ) <span class="op">%&gt;%</span><span class="st">                    </span><span class="co"># removes weeks with no AMU but...</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">amu =</span> <span class="op">!</span><span class="st"> </span>no_amu) <span class="op">%&gt;%</span><span class="st">                   </span><span class="co"># ... with AMU the week before.</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="op">+</span><span class="st">   </span><span class="kw">select</span>(<span class="op">-</span>disease, <span class="op">-</span>no_amu)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/table">table</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="op">+</span><span class="st">   </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/fisher.test">fisher.test</a></span>()</a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  Fisher's Exact Test for Count Data</span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt; data:  .</span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; p-value = 1</span></a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt; alternative hypothesis: true odds ratio is not equal to 1</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt;   0.003660373 39.142615141</span></a>
+<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt; odds ratio </span></a>
+<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt;  0.3779644</span></a></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -176,6 +247,7 @@
 <li><a href="#packages">Packages</a></li>
       <li><a href="#heatmap-figure">Heatmap figure</a></li>
       <li><a href="#identifying-weeks-with-no-amu">Identifying weeks with no AMU</a></li>
+      <li><a href="#looking-for-the-effect-of-amu-on-disease">Looking for the effect of AMU on disease</a></li>
       </ul>
 </div>
       </div>
