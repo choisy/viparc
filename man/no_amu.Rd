@@ -7,7 +7,9 @@
 no_amu(x, n = 0)
 }
 \arguments{
-\item{x}{A boolean vector describing the presence / absence of AMU.}
+\item{x}{A boolean vector describing the presence / absence of AMU. This
+vector has to be ordered chronologically (oldest first) and has to
+be with no gap.}
 
 \item{n}{An scalar integer specifying the number of weeks to consider before
 a focal week in order to define AMU.}
