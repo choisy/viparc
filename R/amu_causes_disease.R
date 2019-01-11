@@ -31,17 +31,17 @@
 #' @examples
 #' library(dplyr)
 #'
-#' amu_with_diseases %>%
+#' amu_with_disease %>%
 #'   amu_causes_diseases()
 #'
-#' amu_with_diseases %>%
+#' amu_with_disease %>%
 #'   amu_causes_diseases(disease = "DIARRHOEA")
 #'
-#' amu_with_diseases %>%
+#' amu_with_disease %>%
 #'   mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
 #'   amu_causes_diseases()
 #'
-#' amu_with_diseases %>%
+#' amu_with_disease %>%
 #'   mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
 #'   amu_causes_diseases(week_disease = 3)
 #'

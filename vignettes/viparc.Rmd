@@ -125,6 +125,31 @@ dataset %>%
   fisher.test()
 ```
 
+These piece of code in basically included in the `amu_causes_diseases()`
+function. See the examples below:
+
+```{r}
+amu_with_diseases %>%
+ amu_causes_diseases()
+```
+
+```{r}
+amu_with_diseases %>%
+ amu_causes_diseases(disease = "DIARRHOEA")
+```
+
+```{r}
+amu_with_diseases %>%
+ mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
+ amu_causes_diseases()
+```
+
+```{r}
+amu_with_diseases %>%
+ mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
+ amu_causes_diseases(week_disease = 3)
+```
+
 ## Indexing the week in a sequence
 
 See how functions `time_index()` and `fill_gaps()` can be used to do the job:
