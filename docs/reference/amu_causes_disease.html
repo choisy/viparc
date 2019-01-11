@@ -182,15 +182,15 @@ disease that we feed to a Fisher exact test.</p>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
 <span class='no'>amu_with_disease</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>amu_causes_diseases</span>()</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
+  <span class='fu'>amu_causes_disease</span>()</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
 <span class='no'>amu_with_disease</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>amu_causes_diseases</span>(<span class='kw'>disease</span> <span class='kw'>=</span> <span class='st'>"DIARRHOEA"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
-<span class='no'>amu_with_disease</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>Sick_yes</span> <span class='kw'>=</span> <span class='no'>DIARRHOEA</span> <span class='kw'>|</span> <span class='no'>RESPIRATORY</span> ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>amu_causes_diseases</span>()</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
+  <span class='fu'>amu_causes_disease</span>(<span class='kw'>disease</span> <span class='kw'>=</span> <span class='st'>"DIARRHOEA"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
 <span class='no'>amu_with_disease</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>Sick_yes</span> <span class='kw'>=</span> <span class='no'>DIARRHOEA</span> <span class='kw'>|</span> <span class='no'>RESPIRATORY</span> ) <span class='kw'>%&gt;%</span>
-  <span class='fu'>amu_causes_diseases</span>(<span class='kw'>week_disease</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
+  <span class='fu'>amu_causes_disease</span>()</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
+<span class='no'>amu_with_disease</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>Sick_yes</span> <span class='kw'>=</span> <span class='no'>DIARRHOEA</span> <span class='kw'>|</span> <span class='no'>RESPIRATORY</span> ) <span class='kw'>%&gt;%</span>
+  <span class='fu'>amu_causes_disease</span>(<span class='kw'>week_disease</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in eval(lhs, parent, parent): objet 'amu_with_disease' introuvable</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

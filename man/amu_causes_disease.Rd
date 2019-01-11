@@ -49,17 +49,17 @@ disease that we feed to a Fisher exact test.
 library(dplyr)
 
 amu_with_disease \%>\%
-  amu_causes_diseases()
+  amu_causes_disease()
 
 amu_with_disease \%>\%
-  amu_causes_diseases(disease = "DIARRHOEA")
-
-amu_with_disease \%>\%
-  mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) \%>\%
-  amu_causes_diseases()
+  amu_causes_disease(disease = "DIARRHOEA")
 
 amu_with_disease \%>\%
   mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) \%>\%
-  amu_causes_diseases(week_disease = 3)
+  amu_causes_disease()
+
+amu_with_disease \%>\%
+  mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) \%>\%
+  amu_causes_disease(week_disease = 3)
 
 }
