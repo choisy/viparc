@@ -125,29 +125,29 @@ dataset %>%
   fisher.test()
 ```
 
-These piece of code in basically included in the `amu_causes_diseases()`
+These piece of code in basically included in the `amu_causes_disease()`
 function. See the examples below:
 
 ```{r}
 amu_with_diseases %>%
- amu_causes_diseases()
+ amu_causes_disease()
 ```
 
 ```{r}
 amu_with_diseases %>%
- amu_causes_diseases(disease = "DIARRHOEA")
-```
-
-```{r}
-amu_with_diseases %>%
- mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
- amu_causes_diseases()
+ amu_causes_disease(disease = "DIARRHOEA")
 ```
 
 ```{r}
 amu_with_diseases %>%
  mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
- amu_causes_diseases(week_disease = 3)
+ amu_causes_disease()
+```
+
+```{r}
+amu_with_diseases %>%
+ mutate(Sick_yes = DIARRHOEA | RESPIRATORY ) %>%
+ amu_causes_disease(week_disease = 3)
 ```
 
 ## Indexing the week in a sequence

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Heatmap of disease and antimicrobial usage from surveillance data — heat_map • viparc</title>
+<title>Diseases data — diseases • viparc</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Heatmap of disease and antimicrobial usage from surveillance data — heat_map" />
+<meta property="og:title" content="Diseases data — diseases" />
 
-<meta property="og:description" content="blablabla" />
+<meta property="og:description" content="Data collected in the ViParc project (http://viparc.org)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -104,80 +104,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Heatmap of disease and antimicrobial usage from surveillance data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/heat_map.R'><code>R/heat_map.R</code></a></small>
-    <div class="hidden name"><code>heat_map.Rd</code></div>
+    <h1>Diseases data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/choisy/viparc/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>diseases.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>blablabla</p>
+    <p>Data collected in the ViParc project (http://viparc.org).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>heat_map</span>(<span class='no'>df</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"time"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"space"</span>,
-  <span class='kw'>col_na</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>, <span class='kw'>col_surv_no_dis</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>col_surv_dis</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='no'>diseases</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 4271 rows and 17 variables:</p><dl class='dl-horizontal'>
+  <dt>FarmID</dt><dd><p>ID of farm.</p></dd>
+  <dt>FlockID</dt><dd><p>ID of flock, combining ID of farm with ID of cycle.</p></dd>
+  <dt>Cycle</dt><dd><p>ID of cycle.</p></dd>
+  <dt>WEEK</dt><dd><p>Week number.</p></dd>
+  <dt>WeekID</dt><dd><p>ID of week, combining ID of flock with ID of week.</p></dd>
+  <dt>RESPIRATORY</dt><dd><p>Presence / absence of respiratory symptoms.</p></dd>
+  <dt>DIARRHOEA</dt><dd><p>Presence / absence of diarrhoea symptoms.</p></dd>
+  <dt>CNS</dt><dd><p>Presence / absence of central nervous system infection symptoms.</p></dd>
+  <dt>MALAISE</dt><dd><p>Presence / absence of malaise.</p></dd>
+  <dt>LEGLESIONS</dt><dd><p>Presence / absence of leg lesions.</p></dd>
+  <dt>SUDDENDEATH</dt><dd><p>Presence / absence of sudden death.</p></dd>
+  <dt>NoSign</dt><dd><p>Presence / absence of  symptoms.</p></dd>
+  <dt>Sick_yes</dt><dd><p>Presence / absence of symptoms (any symptom).</p></dd>
+  <dt>OTHDISEASE</dt><dd><p>Presence / absence of other disease.</p></dd>
+  <dt>CHICKENSICKNO</dt><dd><p>Number of sick chicken.</p></dd>
+  <dt>CHICKENDISEASEDEATH</dt><dd><p>Number of chicken dead, excluding sudden death.</p></dd>
+  <dt>CHICKENSUDDENDEATH</dt><dd><p>Number of chicken dying from sudden death.</p></dd>
+</dl>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td><p>data frame with 4 variable named "time", "space", "disease" and
-"drug". "time" and "space" are considered as integer and character
-respectively and "disease" and "drug" are both considered as
-logical.</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>label of the x axis. Default to "time".</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>label of the y axis. Default to "space".</p></td>
-    </tr>
-    <tr>
-      <th>col_na</th>
-      <td><p>color used for non surveyed time/space.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_no_dis</th>
-      <td><p>color used for surveyed time/space with no disease.</p></td>
-    </tr>
-    <tr>
-      <th>col_surv_dis</th>
-      <td><p>color used for surveyed time/space with disease</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional parameters passed to the "points" function that add
-the "drug" information.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='http://viparc.org'>http://viparc.org</a></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Generated from <code>diseases &lt;- read.csv2(system.file("extdata", "DISEASE_GridEvent.csv", package = "viparc"), sep=",", na.strings = "na", header = TRUE, stringsAsFactors = FALSE)</code></p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>chcknfarms</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>CYCLE</span> <span class='kw'>==</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>transmute</a></span>(<span class='kw'>space</span>   <span class='kw'>=</span> <span class='no'>FARMCODE</span>,
-            <span class='kw'>time</span>    <span class='kw'>=</span> <span class='no'>WEEK</span>,
-            <span class='kw'>disease</span> <span class='kw'>=</span> <span class='no'>SRespiratory</span>,
-            <span class='kw'>drug</span>    <span class='kw'>=</span> <span class='no'>AntibioticUse</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>heat_map</span>(<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"week"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"farm"</span>)</div><div class='img'><img src='heat_map-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      
+      <li><a href="#format">Format</a></li>
 
-    <h2>Author</h2>
-    <p>Marc Choisy</p>
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
+          </ul>
+
   </div>
 </div>
 
